@@ -28,4 +28,4 @@ jobs:
       run: yarn build
 
     - name: Run ESLint
-      run: yarn eslint '**/*.ts' '**/*.tsx'
+      run: yarn lint
