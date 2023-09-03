@@ -1,0 +1,17 @@
+.winner,
+.loser,
+.draw {
+  font-weight: bold;
+}
+
+.winner {
+  color: var(--winner-color);
+}
+
+.loser {
+  color: var(--loser-color);
+}
+
+.draw {
+    color: var(--draw-color);
+}

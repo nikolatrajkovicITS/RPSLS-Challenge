@@ -1,0 +1,14 @@
+.game-board {
+  width: 100%;
+  padding: 1.25rem;
+}
+
+.container {
+  @include flex-setup(row, wrap, space-between, center);
+}
+
+.game-status {
+  font-size: 1.5rem;
+  margin-top: 1.25rem;
+  text-align: center;
+}
