@@ -1,27 +1,71 @@
-import { Result, Shape } from '../types';
-import { ME, COMPUTER, DRAW, WINNER, LOSER } from './constants';
+import { GameResult, Winner, Choice, Game } from '../types';
+import { WIN, LOSE, TIE, PLAYER, COMPUTER, TIE_GAME } from './constants';
 
-export const shapes: Record<Shape, Partial<Record<Shape, string>>> = {
-  scissors: { paper: 'cuts', lizard: 'decapitates' },
-  paper: { rock: 'covers', spock: 'disproves' },
-  rock: { lizard: 'crushes', scissors: 'crushes' },
-  lizard: { spock: 'poisons', paper: 'eats' },
-  spock: { scissors: 'smashes', rock: 'vaporizes' },
+interface GameOutcome {
+  statusMessage: string;
+  updatedScore: { player: number; computer: number };
+}
+
+export const mapResultToClassName = (winner: Winner): string => {
+  switch (winner) {
+    case PLAYER:
+      return WIN;
+    case COMPUTER:
+      return LOSE;
+    case TIE_GAME:
+      return TIE;
+    default:
+      throw new Error(`Invalid winner: ${winner}`);
+  }
 };
 
-export const determineWinner = (playerOne: Shape, playerTwo: Shape): Result => {
-  if (shapes[playerOne][playerTwo]) {
-    return ME;
-  } else if (shapes[playerTwo][playerOne]) {
-    return COMPUTER;
+export const determineWinner = (gameResult: GameResult): Winner => {
+  switch (gameResult) {
+    case WIN:
+      return PLAYER;
+    case LOSE:
+      return COMPUTER;
+    case TIE:
+      return TIE_GAME;
+    default:
+      throw new Error(`Invalid game result: ${gameResult}`);
   }
-
-  return DRAW;
 };
 
-export const mapResultToClassName = (gameWinner: Result): string => {
-  if (gameWinner === DRAW) {
-    return DRAW;
+export const getGameOutcome = (
+  winner: string,
+  choice: Choice,
+  computerChoice: Choice,
+  score: { player: number; computer: number },
+): GameOutcome => {
+  let statusMessage = "It's a Tie!";
+  const updatedScore = { ...score };
+
+  if (winner === PLAYER) {
+    updatedScore.player += 1;
+    statusMessage = `You Won! ${choice.name} beats ${computerChoice.name}.`;
+  } else if (winner === COMPUTER) {
+    updatedScore.computer += 1;
+    statusMessage = `You Lost! ${computerChoice.name} beats ${choice.name}.`;
   }
-  return gameWinner === ME ? WINNER : LOSER;
+
+  return {
+    statusMessage,
+    updatedScore,
+  };
+};
+
+export const createNewGame = (
+  status: GameResult,
+  computerChoice: Choice,
+  choice: Choice,
+): Game => {
+  const winner = determineWinner(status);
+  const newGame: Game = {
+    winner,
+    status,
+    computerChoice: computerChoice,
+    playerChoice: choice,
+  };
+  return newGame;
 };

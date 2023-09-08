@@ -1,17 +1,18 @@
 .winner,
 .loser,
-.draw {
+.tie {
   font-weight: bold;
+  text-transform: capitalize;
 }
 
-.winner {
+.win {
   color: var(--winner-color);
 }
 
-.loser {
+.lose {
   color: var(--loser-color);
 }
 
-.draw {
-    color: var(--draw-color);
+.tie {
+    color: var(--tie-color);
 }

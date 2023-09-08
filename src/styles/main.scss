@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
-@import 'variables';
-@import 'mixins';
-@import 'global';
-@import 'layout';
-@import 'buttons';
-@import 'table';
-@import 'gameBoard';
-@import 'playerStatus';
+@import 'common/variables';
+@import 'common/mixins';
+@import 'common/global';
+@import 'common/layout';
+@import 'common/buttons';
+
+@import 'game/gameBoard';
+@import 'game/playerStatus';
+@import 'game/scoreTable';
+
+@import 'animations/gameLoader';
+@import 'animations/battleAnimation';

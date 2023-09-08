@@ -1,0 +1,11 @@
+
+.layout {
+  @include flex-center;
+  flex-direction: column;
+  height: 100vh;
+  padding: var(--layout-padding);
+}
+
+.layout-children {
+  width: 100%;
+}

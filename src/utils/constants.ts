@@ -1,5 +1,7 @@
-export const ME = 'Me';
+export const WIN = 'win';
+export const LOSE = 'lose';
+export const TIE = 'tie';
+
 export const COMPUTER = 'Computer';
-export const DRAW = 'Draw';
-export const WINNER = 'winner';
-export const LOSER = 'loser';
+export const TIE_GAME = 'Tie';
+export const PLAYER = 'Player';

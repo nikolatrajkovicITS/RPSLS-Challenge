@@ -1,13 +1,19 @@
 export type Shape = 'scissors' | 'paper' | 'rock' | 'lizard' | 'spock';
 
-export type Choice = Shape;
+export type Choice = {
+  id: number;
+  name: string;
+};
 
-export type Player = 'Computer' | 'Me';
+export type Player = 'Computer' | 'Player';
 
-export type Result = Player | 'Draw';
+export type Winner = Player | 'Tie';
+
+export type GameResult = 'win' | 'lose' | 'tie';
 
 export type Game = {
-  winner: Result;
-  computerChoice: Shape;
-  myChoice: Shape;
+  winner: Winner;
+  status: GameResult;
+  computerChoice: Choice;
+  playerChoice: Choice;
 };
